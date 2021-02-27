@@ -1,4 +1,4 @@
-# UE20CS101 Project - E2EE Sandbox
+# UE20CS101 Project - E2EE toolkit
 
 Of late there has been a lot of concern about what End-To-End Encryption really is, and how it works. This project is intended to serve as a live demonstration of what really happens when you start talking with someone on an app that offers end-to-end-encyption, including features that allow you to see both the encrypted and decrypted text being sent across.
 
