@@ -21,14 +21,18 @@ class TestUser(unittest.TestCase):
 
         private_from_user_1 = user_1.get_shared_secret(public_user2)
         private_from_user_2 = user_2.get_shared_secret(public_user1)
-        # print(private_from_user_2, private_from_user_1)
+        print(private_from_user_2, private_from_user_1)
         self.assertEqual(private_from_user_1, private_from_user_2)
 
         # now check if the messaging works
         m1 = user_1.send_message("hello")
         m2 = user_2.send_message("hello")
-        print(m1, m2)
-        self.assertEqual(m1["message"], m2["message"])
+
+        # now decrypt
+        m1_decrypted = user_2.decrypt(m1["message"])
+        m2_decrypted = user_1.decrypt(m2["message"])
+        print(m1_decrypted, m2_decrypted)
+        self.assertEqual(m1_decrypted, m2_decrypted)
 
 
 if __name__ == "__main__":

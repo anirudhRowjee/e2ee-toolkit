@@ -11,6 +11,7 @@ import math
 import hashlib
 import base64
 from cryptography.fernet import Fernet
+from fernet_utils import get_key
 
 
 class User:
@@ -66,7 +67,7 @@ class User:
         if not self.shared_secret:
             self.shared_secret = pow(other_public_key, self.private_key, self.psk_mod)
         if not self.encryptor:
-            self.encryptor = Fernet(self.get_fernet_key(self.shared_secret))
+            self.encryptor = Fernet(get_key(str(self.shared_secret)))
         return self.shared_secret
 
     def encrypt(self, message):
@@ -90,7 +91,10 @@ class User:
     def send_message(self, message):
         # functon to return a message object which is to be appended to the
         # message array, with encryption
-        return {"sender": self.name, "message": self.encrypt(message)}
+        return {
+            "sender": self.name,
+            "message": self.encrypt(bytes(message, encoding="utf-8")),
+        }
 
 
 class Session:
