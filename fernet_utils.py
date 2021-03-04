@@ -2,6 +2,7 @@ import os
 import base64
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.hazmat.backends import default_backend
 
 
 def get_key(string):
@@ -14,7 +15,11 @@ def get_key(string):
     salt = b"\xfcN\x85`\xf9p{V*\xce\xa7U\xbeY\xc8\xa8"
 
     key_derivation_function = PBKDF2HMAC(
-        algorithm=hashes.SHA256(), length=32, salt=salt, iterations=10000
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=salt,
+        iterations=10000,
+        # backend=default_backend(),
     )
 
     # convert string to bytes
