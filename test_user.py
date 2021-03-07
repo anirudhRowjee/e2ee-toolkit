@@ -1,4 +1,4 @@
-from main import User
+from user import User
 import unittest
 
 

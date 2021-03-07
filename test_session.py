@@ -1,4 +1,4 @@
-from main import Session
+from session import Session
 import unittest
 
 
