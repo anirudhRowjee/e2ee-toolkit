@@ -10,7 +10,7 @@ We will demonstrate the [Diffie-Hellman Key Exchange](https://en.wikipedia.org/w
 * You will be able to send messages as either user, and will be able to toggle decryption for the messages to see how it looks. 
 
 ## The current state of things
-![](./UI.png)
+![](./ui.png)
 
 We decided to implement the interface in `flask`.
 
