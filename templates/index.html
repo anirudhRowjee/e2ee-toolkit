@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E2EE Toolkit</title>
+</head>
+<body>
+  <h1>E2EE Toolkit</h1>
+  <h3>This is a demonstration of how end to end encryption works!</h3>
+
+  <h2> Server Messages </h2>
+  <ul>
+    {% for message in server_messages %}
+    <li> {{message}}</li>
+    {% endfor %}
+  </ul>
+
+  <h2> {{user1_username}}'s Messages </h2>
+  <ul>
+    {% for message in user1_messages %}
+    <li> {{message}}</li>
+    {% endfor %}
+  </ul>
+
+  <h2> {{user2_username}}'s Messages </h2>
+  <ul>
+    {% for message in user2_messages %}
+    <li> {{message}}</li>
+    {% endfor %}
+  </ul>
+
+  <div>
+    <form action="/send/{{user1_username}}" method="POST" >
+      <input type="text" name="message">
+      <button type="submit"> Send Message as {{user1_username}} </button>
+    </form>
+  </div>
+
+  <div>
+    <form action="/send/{{user2_username}}" method="POST" >
+      <input type="text" name="message">
+      <button type="submit"> Send Message as {{user2_username}} </button>
+    </form>
+  </div>
+
+
+</body>
+</html>

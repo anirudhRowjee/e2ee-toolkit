@@ -9,11 +9,11 @@ We will demonstrate the [Diffie-Hellman Key Exchange](https://en.wikipedia.org/w
 * You will be able to randomly generate public and private keys, both lasting for the session and decided at the start. You will not be able to change these mid-session.
 * You will be able to send messages as either user, and will be able to toggle decryption for the messages to see how it looks. 
 
-## Rough Plan
-![](./UI.jpeg)
+## The current state of things
+![](./UI.png)
 
+We decided to implement the interface in `flask`.
 
-This interface will be implemented in Tkinter only, and will require `python3`.
 
 ## Python Libraries Being Used
 * `tkinter`
@@ -22,6 +22,7 @@ This interface will be implemented in Tkinter only, and will require `python3`.
 * `math`
 * `hashlib`
 * `cryptography`
+* `flask`
 
 ## Student Details
 * Anish Cherekar (SRN `PES2UG20CS054`)
