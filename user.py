@@ -8,6 +8,7 @@ import base64
 from cryptography.fernet import Fernet
 from fernet_utils import get_key
 
+
 class User:
     """
     Represents a user taking part in the chat
@@ -35,6 +36,9 @@ class User:
         self.shared_secret = None
         # set the encryption object (Frenet instance)
         self.encryptor = None
+
+        # create a message cache to prevent CPU overuse for decryption
+        self.message_cache = {}
 
     def get_fernet_key(self, shared_key):
         # returns the fernet key we can use to encode and decode with fernet
@@ -79,7 +83,14 @@ class User:
                 "Encrtyptor is not Defined  - has the shared key been generated?"
             )
         else:
-            return self.encryptor.decrypt(ciphertext)
+            if ciphertext in self.message_cache.keys():
+                print("Cache accessed!")
+                return self.message_cache[ciphertext]
+            else:
+                # add to cache
+                cleartext = self.encryptor.decrypt(ciphertext)
+                self.message_cache[ciphertext] = cleartext
+                return cleartext
 
     def send_message(self, message):
         # functon to return a message object which is to be appended to the
@@ -109,4 +120,3 @@ class User:
         # Decrypt an array of messages with the private key
         decrypted_messages = list(map(self.decrypt_message_object, message_array[2:]))
         return decrypted_messages
-
