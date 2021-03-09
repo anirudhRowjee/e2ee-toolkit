@@ -27,6 +27,11 @@ def deliver_homepage():
         "user2_messages": chat_session.get_decrypted_messages_for_user("Bob"),
         "user1_username": chat_session.user_1.name,
         "user2_username": chat_session.user_2.name,
+        "sharedkey": str(chat_session.user_1.shared_secret),
+        "user1_pub": str(chat_session.user_1.public_key),
+        "user1_priv": str(chat_session.user_1.private_key),
+        "user2_pub": str(chat_session.user_2.public_key),
+        "user2_priv": str(chat_session.user_2.private_key),
     }
 
     return render_template("index.html", **context)
